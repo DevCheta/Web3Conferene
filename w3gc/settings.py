@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 from django.core.management.utils import get_random_secret_key
+import corsheaders
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,6 +32,20 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+CORS_ALLOWED_ORIGIN = "*"
+
+CORS_ALLOW_HEADERS=[
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,6 +56,7 @@ INSTALLED_APPS = [
     'app',
     "rest_framework_simplejwt",
     'rest_framework',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -51,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
 ]
 
 ROOT_URLCONF = 'w3gc.urls'
